@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import NoteContext from "./Context/NoteContext";
  
 
-const AddNotes = () => {
+const AddNotes = (props) => {
     const context = useContext(NoteContext)
     const {addNote} = context;
        
@@ -12,7 +12,8 @@ const AddNotes = () => {
     const handleClick = (e)=>{
         e.preventDefault();
         addNote(note.title , note.description, note.tag);
-        setNote({title: "", description: "", tag:" "})
+        setNote({title: "", description: "", tag:" "});
+        //props.showAlert("Account created Sccessfully", "success")
 
     }
     const onChange = (e) =>{

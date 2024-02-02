@@ -26,7 +26,7 @@ const SignUp = (props) => {
         props.showAlert("Account created Sccessfully", "success")
      }
      else{
-      props.showAlert("Invalide Details", "danger")
+       props.showAlert("Invalide Details", "danger")
      }
      
     

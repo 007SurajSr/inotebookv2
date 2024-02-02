@@ -88,7 +88,7 @@ const Notes = (props) => {
     const handleClick = (e)=>{ 
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
-        // props.showAlert("Updated successfully","success");
+        props.showAlert("Updated successfully","success");
     }
 
     const onChange = (e)=>{
@@ -139,7 +139,7 @@ const Notes = (props) => {
                 {notes.length===0 && 'No notes to display'}
                 </div>
                 {notes.map((note) => {
-                    return <NoteItems key={note._id} updateNote={updateNote}   note={note} />
+                    return <NoteItems key={note._id} updateNote={updateNote} showAlert={props.showAlert}   note={note} />
                 })}
             </div>
         </>

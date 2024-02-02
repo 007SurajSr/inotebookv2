@@ -15,17 +15,18 @@ router.post('/createuser', [
     body('name','Enter a valid name').isLength({ min: 4 }),
     body('password', 'Password must be atleast 5 characters').isLength({ min: 5 }),
 ] , async (req,res)=>{ 
+  let success = false;
     // If there are errors, return Bad request and the errors                                                            // to make
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
     //Check whether the user with this email exists already
     try {
     let user = await  User.findOne({email: req.body.email });
     // console.log(user) To check if user is already exist or not.
     if(user){
-      return res.status(400).json({errors: "Sorry a user with this email already exists"})
+      return res.status(400).json({success, errors: "Sorry a user with this email already exists"})
      }  
      const salt = await bcrypt.genSalt(10);
      const secPass = await bcrypt.hash(req.body.password , salt);
@@ -52,8 +53,8 @@ router.post('/createuser', [
     }
    } 
    const authtoken = jwt.sign(data, JWT_SECRET);
-   
-   res.json({authtoken});
+   success = true;
+   res.json({success, authtoken});
    // console.log(jwtData);  //too see the token on the terminal
    //res.json(user)   // too see the details which are sent to the DB
   } catch(error) {
@@ -62,7 +63,7 @@ router.post('/createuser', [
     }
 })
 
-//Route 1:- Authenticate a User using : POST "/api/auth/login". Not required login
+//Route 2:- Authenticate a User using : POST "/api/auth/login". Not required login
 
 router.post('/login', [
   body('email','Enter a valid email').isEmail(),
