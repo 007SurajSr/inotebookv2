@@ -70,7 +70,7 @@ const Notes = (props) => {
             getNotes()
         }
         else{
-            navigate('/')
+            navigate('/login')
         }
         
         // eslint-disable-next-line
