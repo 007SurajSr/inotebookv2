@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-const noteSchema = new mongoose.Schema({
+const tastSchema = new mongoose.Schema({
      user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
@@ -16,14 +16,22 @@ const noteSchema = new mongoose.Schema({
         type: String,
         require: true
         
-    }, tag:{
+    }, 
+    tag:{
         type: String,
         default: "General"
     },
     date:{
         type: Date,
         default: Date.now
-    }
+    },
+    status:{
+        type: String, 
+        default: 'pending', 
+        enum:  'completed'
+
+    
+},  
 });
 
-module.exports = mongoose.model('note', noteSchema);
+module.exports = mongoose.model('task', tastSchema);

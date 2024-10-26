@@ -1,12 +1,13 @@
  
-import Notes from "./Notes";
+//import Task from "../../backend1/module/Task";
+import Tasks from "./Tasks";
  
  
  export const Home = (props) => {
   const {showAlert} = props;
   return (
     <div>
-       <Notes showAlert={showAlert}/>
+       <Tasks showAlert={showAlert}/>
     </div>
   );
 };

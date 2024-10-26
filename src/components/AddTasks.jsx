@@ -1,27 +1,27 @@
 import React, { useContext, useState } from "react";
-import NoteContext from "./Context/NoteContext";
+import TaskContext from "./Context/TaskContext";
  
 
-const AddNotes = (  ) => {
-    const context = useContext(NoteContext)
-    const {addNote} = context;
+const AddTasks = (  ) => {
+    const context = useContext(TaskContext)
+    const {addTask} = context;
        
 
-    const [note, setNote] = useState({title: "", description: "", tag:" "})
+    const [task, setTask] = useState({title: "", description: "", tag:" "})
     
     const handleClick = (e)=>{
         e.preventDefault();
-        addNote(note.title , note.description, note.tag);
-        setNote({title: "", description: "", tag:" "});
+        addTask(task.title , task.description, task.tag);
+        setTask({title: "", description: "", tag:" "});
         //props.showAlert("Account created Sccessfully", "success")
 
     }
     const onChange = (e) =>{
-      setNote({...note, [e.target.name]: e.target.value})
+      setTask({...task, [e.target.name]: e.target.value})
     }
     return (
     <div className="container my-3">
-        <h1>Add a Note</h1>
+        <h1>Add a task</h1>
         <form>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
@@ -32,7 +32,7 @@ const AddNotes = (  ) => {
               className="form-control"
               id="title"
               name='title' 
-              aria-describedby="emailHelp" value={note.title}
+              aria-describedby="emailHelp" value={task.title}
               onChange={onChange}
             />
             </div>
@@ -44,7 +44,7 @@ const AddNotes = (  ) => {
               type="text"
               className="form-control"
               id="description"
-              name='description'  value={note.description}
+              name='description'  value={task.description}
               onChange={onChange}
             />
           </div>
@@ -56,12 +56,12 @@ const AddNotes = (  ) => {
               type="text"
               className="form-control"
               id="tag"
-              name='tag'  value={note.tag}
+              name='tag'  value={task.tag}
               onChange={onChange}
             />
           </div>
-          <button disabled={note.title.length<5 || note.description.length<5}  type="submit" className="btn btn-primary" onClick={handleClick}>
-            Add Note
+          <button disabled={task.title.length<5 || task.description.length<5}  type="submit" className="btn btn-primary" onClick={handleClick}>
+            Add task
           </button>
         </form>
          
@@ -69,6 +69,6 @@ const AddNotes = (  ) => {
   )
 }
 
-export default AddNotes;
+export default AddTasks;
 
  

@@ -19,7 +19,7 @@ const http = require('http').Server(app);
 const mongoose = require('mongoose');
 
 // mongoose.connect("mongodb+srv://8700suraj:21hJIFETV1vdRFDL@testt-db.5igjwzu.mongodb.net/?retryWrites=true&w=majority"); // ATLASS
-mongoose.connect("mongodb+srv://8700suraj:21hJIFETV1vdRFDL@testt-db.5igjwzu.mongodb.net/inotebook"); //COMPASS
+mongoose.connect("mongodb+srv://8700suraj:21hJIFETV1vdRFDL@testt-db.5igjwzu.mongodb.net/task-manager"); //COMPASS
 
 
 // const user = require('./module/User')

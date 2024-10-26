@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import React, {useState} from "react";
 import Home from "./components/Home";
 import About from "./components/About";
-import NoteState from "./components/Context/NoteState";
+import TaskState from "./components/Context/TaskState";
 import Alert from "./components/Alert";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -23,7 +23,7 @@ function App() {
   }
   return (
     <div>
-      <NoteState>
+      <TaskState>
         <Router>
           <Navbar />
           <Alert alert={alert}/>
@@ -37,7 +37,7 @@ function App() {
           </Routes>
           </div>
         </Router>
-      </NoteState>
+      </TaskState>
     </div>
   );
 }

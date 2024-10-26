@@ -39,7 +39,7 @@ const onChange = (e)=>{
   return (  
     <form onSubmit={handleSubmit}>
   <div className="mb-3">
-   <h2> Create an account to use iNotebook</h2>
+   <h2> Create an account to use Task-Manager</h2>
     <label htmlFor="name" className="form-label">Username</label>
     <input type="text" className="form-control" id="name" name="name" onChange={onChange} aria-describedby="emailHelp"/>
     

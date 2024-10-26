@@ -1,9 +1,9 @@
 import React from 'react';
-import NoteContext from './NoteContext';
+import TaskContext from './TaskContext';
 import { useState } from 'react';
 
 
-const NoteState = (props) => {
+const TaskState = (props) => {
 const host = "http://localhost:5000"
   // const s1 = {
   //   "name": 'Suraj',
@@ -19,13 +19,13 @@ const host = "http://localhost:5000"
   //     })
   //   }, 1000);
   //  }
-const notesInitials = []
+const tasksInitials = []
 
-const [notes, setNotes ] = useState(notesInitials)
+const [tasks, setTasks ] = useState(tasksInitials)
 
-//Get all notes
-const getNotes= async () =>{
-  const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+//Get all tasks
+const getTasks= async () =>{
+  const response = await fetch(`${host}/api/tasks/fetchalltasks`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -34,12 +34,12 @@ const getNotes= async () =>{
 });
 const json = await response.json();
 console.log(json);
-setNotes(json);
+setTasks(json);
 }
-//Add a new Note
-const addNote = async (title, description, tag) =>{
+//Add a new task
+const addTask = async (title, description, tag) =>{
   //TODO: API CALL
-  const response = await fetch(`${host}/api/notes/addnote`, {
+  const response = await fetch(`${host}/api/tasks/addtask`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -48,13 +48,13 @@ const addNote = async (title, description, tag) =>{
   
     body: JSON.stringify({title, description, tag})
   });
-  const note = await response.json();
-  setNotes(notes.concat(note))
+  const task = await response.json();
+  setTasks(tasks.concat(task))
 }
 
-//Delete a Note
-const deleteNote = async (id) =>{
-  const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+//Delete a task
+const deleteTask = async (id) =>{
+  const response = await fetch(`${host}/api/tasks/deletetask/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -64,13 +64,13 @@ const deleteNote = async (id) =>{
   const json =   response.json();
   console.log(json);
 
-  console.log("Deleting the note with id" +id)
-  const newNotes = notes.filter((note)=>{return note._id!==id})
-  setNotes(newNotes);
+  console.log("Deleting the task with id" +id)
+  const newTasks = tasks.filter((task)=>{return task._id!==id})
+  setTasks(newTasks);
 }
-//Edit any Note
-const editNote = async (id, title, description,tag) =>{
-  const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+//Edit any Task
+const editTask = async (id, title, description,tag) =>{
+  const response = await fetch(`${host}/api/tasks/updatetask/${id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -82,27 +82,27 @@ const editNote = async (id, title, description,tag) =>{
 const json = await response.json();
 console.log(json);
 
-let newNotes = JSON.parse(JSON.stringify(notes))
+let newTasks = JSON.parse(JSON.stringify(tasks))
 //Logic to edi in client
-for(let index = 0; index < newNotes.length; index++){
-  const element = newNotes[index];
+for(let index = 0; index < newTasks.length; index++){
+  const element = newTasks[index];
   if(element._id === id){
-    newNotes[index].title = title;
-    newNotes[index].description = description;
-    newNotes[index].tag = tag;
+    newTasks[index].title = title;
+    newTasks[index].description = description;
+    newTasks[index].tag = tag;
     break;
   }
 }
-setNotes(newNotes);
+setTasks(newTasks);
 }
 
   return (
-    <NoteContext.Provider value={{ notes, setNotes,  addNote, deleteNote, editNote, getNotes }}>
+    <TaskContext.Provider value={{ tasks, setTasks,  addTask, deleteTask, editTask, getTasks }}>
       {props.children}
-    </NoteContext.Provider>
+    </TaskContext.Provider>
   )
 }
 
-export default NoteState;
+export default TaskState;
 
  
