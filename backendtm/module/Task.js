@@ -25,13 +25,9 @@ const tastSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    status:{
-        type: String, 
-        default: 'pending', 
-        enum:  'completed'
-
+     
     
-},  
+  
 });
 
 module.exports = mongoose.model('task', tastSchema);
