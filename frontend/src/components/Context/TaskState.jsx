@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 const TaskState = (props) => {
-const host = "http://localhost:5000"
+const host = "https://inotebookv2-211.onrender.com"
   // const s1 = {
   //   "name": 'Suraj',
   //   "class": '7a'
